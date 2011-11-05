@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
 <meta charset="utf-8"> 
-<title>Example of Form with twitter bootstrap</title> 
+<title>Example of A Basic Sign Up Page Using Padly</title> 
 </head>
 
 <body>
