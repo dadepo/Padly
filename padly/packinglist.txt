@@ -1,0 +1,3 @@
+How to include BASEURL as constant
+auth should be in SUL Dir
+Make email a deafult component of form
