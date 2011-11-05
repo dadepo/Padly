@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
 <meta charset="utf-8"> 
-<title>Example of Form with twitter bootstrap</title> 
+<title>Example of Retrieve Password Page</title> 
 </head>
 
 <body>

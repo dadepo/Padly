@@ -2,16 +2,23 @@
 <html lang="en"> 
 <head> 
 <meta charset="utf-8"> 
-<title>Example of A Signup Page Using Padly</title> 
+<title>Example of Form with twitter bootstrap</title> 
 </head>
 
 <body>
 <?php
 include("padly/padly.php");
-
-
 $sul = new Padly($con);
-$sul->display('signup');
+
+if (!isset($_GET['key']))
+{
+$sul->display('retrive');
+}
+else
+{
+//display link
+$sul->display('resetpassword');
+}
 ?>
 </body>
 
