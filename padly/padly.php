@@ -1,4 +1,13 @@
 <?php
+/**
+Copyright (c) 2011, Dadepo Aderemi.  This file is
+licensed under the GNU GENERAL PUBLIC LICENSE.  See
+the COPYRIGHT file
+*/
+?>
+<?php
+
+
 
 include("pd_config.php");
 
