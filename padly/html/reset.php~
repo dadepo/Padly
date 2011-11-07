@@ -1,6 +1,6 @@
 <?php
 $baseurl = dirname($_SERVER["REQUEST_URI"])."/";
-include_once("padly/pd_config.php");
+include_once("/padly/pd_config.php");
 //include_once("baseurl.php");
 
 ?>
@@ -9,7 +9,7 @@ include_once("padly/pd_config.php");
 <div id="sulform">
 <link rel="stylesheet" type="text/css" href="padly/html/style/bootstrap.css" />
 
-<form method="post" action="<?php echo PD_BASE;?>/auth.php" class="form-stacked" style="width:350px;">
+<form method="post" action="<?php echo PD_BASE; ?>/auth.php" class="form-stacked" style="width:350px;">
     
 <fieldset>
           
@@ -40,15 +40,19 @@ break;
 		    
 		    
 		    <!--make all hidden form input have same name-->
-		    <input type="hidden" value="re" name="retrieve" />
+		   
+		    
+		    
+		    <input type="hidden" value="re" name="reset" />
+		    <input type="hidden" value="<?php echo $_GET['key']; ?>" name="key" />
 		    <input type="hidden" name="sender_url" value="<?php echo $_SERVER['PHP_SELF'];?>" />
-            <label for="">Type in your email address</label>
+            <label for="">Type in your New Password</label>
             <div class="input">
-              <input type="text" size="20" name="remail" id="email" class="large">
+              <input type="text" size="20" name="resetpass" id="email" class="large">
             </div>
 
 			
-            <input type="submit" value="Send Link To Retrieve Password" class="btn primary" />
+            <input type="submit" value="Reset Password" class="btn primary" />
             
             
             

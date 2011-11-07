@@ -1,6 +1,6 @@
 <?php
 //include the necessary javascript
-include('script/validator.js');
+include('/script/validator.js');
 //set the PD_APP constant in an invinsible field for JAvascript
 
 echo "<span id='pd_base' style='display:none'>".PD_BASE."</span>";
