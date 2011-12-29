@@ -18,6 +18,7 @@ class Padly
     {
         private $dbc;
         private $db;
+	public $test = "Dade";
         
         
         public function __construct($dbc) //variable: DB connect resource
@@ -150,8 +151,8 @@ while (list($k,$v) = each($darray))
 }
 
 $dbvalues = "'".implode("','",$dbtablevalues)."'";
-echo $dbfields."<br>";
-echo $dbvalues."<br>";
+//echo $dbfields."<br>";
+//echo $dbvalues."<br>";
 
 mysql_select_db("$dbname");
 $q = mysql_query("INSERT into sul_signup_profile($dbfields) values($dbvalues)");
@@ -233,13 +234,14 @@ private function SendMessage($address,$subj,$message)
     $headers = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= "From: sender@sender.com" . "\r\n";
-
-
-    ini_set('SMTP','smtp.wlink.com.np');
-    ini_set('smtp_port',25);
-    ini_set('auth_username','dadepo04@yahoo.com');
-ini_set('auth_password','ojigidiri');
-    mail($address,$subj,$message,$headers);
+    if(mail($address,$subj,$message,$headers))
+    {
+    echo "sent";
+    }
+    else
+    {
+    echo "notsent";
+    }
     
 }
         
@@ -261,7 +263,7 @@ public function send_email_retrieve_link($thepost)
         {
             //create it
             $r = mysql_query("CREATE TABLE `pdki_password_email` (`ppeid` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
- `key` VARCHAR(225) NOT NULL, `email` VARCHAR(45) NOT NULL, PRIMARY KEY (`ppeid`)) ENGINE = MyISAM;");
+ `dkey` VARCHAR(225) NOT NULL, `email` VARCHAR(45) NOT NULL, PRIMARY KEY (`ppeid`)) ENGINE = MyISAM;");
             if(!$r)
             {
                 echo mysql_error();
@@ -270,7 +272,7 @@ public function send_email_retrieve_link($thepost)
             
         }
         //whatever the case the table would have been created
-            //udate it
+            //update it
             $r = mysql_query("INSERT into pdki_password_email (dkey,email) values('$dkey','$remail')");
             if (!$r)
             {
@@ -282,8 +284,8 @@ public function send_email_retrieve_link($thepost)
                 //now send the link
                 //also add an additional 4 digits to the begining to begin the string
                 $dlink = APP_BASE.'/retrievepass.php?key='.rand(1000,2999).$dkey;
-                echo $dlink;
-                //SendMessage($remail,"Retrieve Your Password",$dlink);
+                //echo $dlink;
+                $this->SendMessage($remail,"Retrieve Your Password",$dlink);
                 
             }
         
@@ -302,6 +304,7 @@ public function reset($thepost)
 {
     extract($thepost);
     //echo $resetpass;
+    $resetpass = md5($resetpass);
     $key = substr($key,4);
     $r = mysql_query("SELECT email from pdki_password_email where dkey = '$key'");
     if ($r)
@@ -309,7 +312,7 @@ public function reset($thepost)
         if (mysql_num_rows($r) == 1)
         {
             //update with new password
-            $email = mysql_fetch_row($r,0);
+            $email = mysql_fetch_row($r);
             $email = $email[0];
             
             $r = mysql_query("UPDATE sul_signup_profile SET Password = '$resetpass' where Email_Address = '$email'");
@@ -327,8 +330,105 @@ public function reset($thepost)
 }
         
         
-        
-        
+        public function displayText($options = "")
+	{
+	echo "am Text";
+	}
+	
+	public function displaySelect($PD_SIGNUPFORM,$key)
+	{
+	echo "<label for=''>$key</label>
+	<select class='medium' name='$key'>" ;
+	$optionarray = split(',',$PD_SIGNUPFORM[$key]['option']);
+	foreach($optionarray as $option)
+	{
+		echo "<option>$option</option>";
+	}
+	echo "</select>";
+
+	
+	}
+	
+	public function displayRadio($PD_SIGNUPFORM,$key,$type,$req)
+	{
+	
+	
+	echo "<label for=''>$key";if($req == 1) echo '*'; echo "</label>";
+	$optionarray = split(',',$PD_SIGNUPFORM[$key]['option']);
+	foreach($optionarray as $option)
+	{
+		echo "<span>$option</span><input type='$type' value='$option' name='$key' id='$key' class=";
+		if($req == 1) echo 'req';
+		echo ">";
+		$nkey = str_replace(" ", "_",$key);
+		$PD_BASE = PD_BASE;
+		echo "<span id='msg_$nkey' style='margin-left:10px;display:none'><img src='$PD_BASE/html/images/loading.gif' /></span>";
+	}
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public function displayCheckbox($PD_SIGNUPFORM,$key,$type,$req)
+	{
+	
+	
+	echo "<label for=''>$key";if($req == 1) echo '*'; echo "</label>";
+	$optionarray = split(',',$PD_SIGNUPFORM[$key]['option']);
+	foreach($optionarray as $option)
+	{
+		echo "<span>$option</span><input type='$type' value='$option' name='$key' id='$key' class=";
+		if($req == 1) echo 'req';
+		echo ">";
+		$nkey = str_replace(" ", "_",$key);
+		$PD_BASE = PD_BASE;
+		echo "<span id='msg_$nkey' style='margin-left:10px;display:none'><img src='$PD_BASE/html/images/loading.gif' /></span>";
+	}
+	
+	
+	}
+	
+	public function displayTextarea($PD_SIGNUPFORM,$key,$type,$req)
+	{
+	    echo "<label for=''>$key";if($req == 1) echo '*'; echo "</label>";
+	    $star = '';
+	    if($req == 1) 
+	    {
+	    $star = 'req';
+	    }
+	    $nkey = str_replace(" ", "_",$key);
+	    $PD_BASE = PD_BASE;
+	    echo "<textarea name='$key' id='$key' class='large $star'></textarea><span id='$nkey' style='margin-left:10px;display:none'><img src='$PD_BASE/html/images/loading.gif' /></span>";
+	    
+	}
+	
+	
+	public function updateProfile($field,$value,$uid)
+	{
+	//you get the UID from the session $_SESSION['uid']
+	$f = str_replace(" ", "_", mysql_escape_string($field));
+	$v = mysql_escape_string($value);
+	$uid = mysql_escape_string($uid);
+	
+	$r = mysql_query("UPDATE sul_signup_profile SET $f = '$v' WHERE uid = $uid");
+	if(!$r)
+	{
+	echo mysql_error();
+	}
+	else
+	{
+	//Should update session abi?
+	$_SESSION[$f] = $v;
+	}
+	
+	}
         
         
         

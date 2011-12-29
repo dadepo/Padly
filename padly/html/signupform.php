@@ -1,7 +1,13 @@
+<div class="clearfix">
 <?php
 //include the necessary javascript
 include('script/validator.js');
 //set the PD_APP constant in an invinsible field for JAvascript
+
+
+
+
+
 
 echo "<span id='pd_base' style='display:none'>".PD_BASE."</span>";
 reset($PD_SIGNUPFORM);
@@ -18,28 +24,22 @@ reset($PD_SIGNUPFORM);
 			      {
 					switch($type)
 					{
-						  case 'select':
-					?>	  
-					<div class="clearfix">
-						  <label for=""><?php echo $key; ?></label>
-						  <div class="input">
-						  <select class="medium" name="<?php echo $key; ?>">
-						  <?php
-						  $optionarray = split(',',$PD_SIGNUPFORM[$key]['option']);
-						  foreach($optionarray as $option)
-						  {
-							    echo "<option>$option</option>";
-						  }
-						 
-						  ?>
-						  </select>
-						</div>
-					      </div>
-										
-					  
-						  
-					<?php	  
+						case 'select':
+						$p->displaySelect($PD_SIGNUPFORM,$key);
+						break;
+						case 'radio':
+						 $p->displayRadio($PD_SIGNUPFORM,$key,$type,$req);
 						  break;
+						  case 'checkbox':
+						  $p->displayCheckbox($PD_SIGNUPFORM,$key,$type,$req);
+						  break;
+					          case "textarea":
+						  $p->displayTextarea($PD_SIGNUPFORM,$key,$type,$req);
+						  
+					
+					
+					
+					
 					}
 					//generate code for them multiple options
 			      }
@@ -52,6 +52,7 @@ reset($PD_SIGNUPFORM);
 			      <label for=""><?php echo $key; ?><?php if($req == 1) echo '*'; ?></label>
 			      <div class="input">
 			      <input type="<?php echo $type;?>" size="20" name="<?php echo $key; ?>" id="<?php echo $key; ?>" class="large <?php if($req == 1) echo 'req'; ?>"><span id="msg_<?php echo str_replace(" ", "_",$key); ?>" style="margin-left:10px;display:none"><img src="<?php echo PD_BASE; ?>/html/images/loading.gif" /></span>
+			      
 			      </div>
 			      <?php	
 			      	

@@ -1,0 +1,1 @@
+[12-Nov-2011 17:42:42] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'dadeade1_padly'@'localhost' (using password: YES) in /home/dadeade1/public_html/testapp/padly/pd_config.php on line 19

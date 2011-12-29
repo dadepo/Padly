@@ -1,9 +1,12 @@
 <?php
 $baseurl = dirname($_SERVER["REQUEST_URI"])."/";
-include_once("padly/pd_config.php");
+include_once("padly/padly.php");
 
 GLOBAL $PD_SIGNUPFORM;
 
+$con = mysql_connect('localhost','root','ojigidiri');
+
+$p = new Padly($con);
 
 
 
@@ -58,7 +61,7 @@ GLOBAL $PD_SIGNUPFORM;
 		    
 		    //check if the number of fields specified in the config file is note same as in table
 		    
-		    if (mysql_num_fields($test) != (count($PD_SIGNUPFORM) + 1))
+		    if (mysql_num_fields($test) != (count($PD_SIGNUPFORM) + 2))
 		    {
 			      
 			      //backup present table and create another one
@@ -200,7 +203,7 @@ GLOBAL $PD_SIGNUPFORM;
             <br/>-->
 	    
 	    
-	    <br/>
+	    <br/><br/>
             <input type="submit" value="Create An Account" class="btn primary" />
 
             

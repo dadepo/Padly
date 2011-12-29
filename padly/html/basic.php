@@ -62,7 +62,7 @@ case 2:
             <br/>
 			<input type="hidden" value="login" class="btn primary" />
             <input type="submit" value="Login" class="btn primary" />
-            <a href="<?php echo $baseurl.BASE_REGISTER;?>" class="btn">Or Create Account</a>
+            <a href="<?php echo APP_BASE."/".BASE_REGISTER;?>" class="btn">Or Create Account</a>
             <br/><br/>
             <p>Forgot Your Password? <a href="<?php echo $baseurl.RETRIEVE;?>">Retrieve Password</a></p>
             
