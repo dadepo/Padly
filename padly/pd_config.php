@@ -15,7 +15,7 @@ $PD_SIGNUPFORM = array(
 
 
 
-$con = mysql_connect("localhost","root","ojigidiri");
+
 
 
 define("DBNAME", "padly");
