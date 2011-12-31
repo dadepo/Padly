@@ -93,8 +93,7 @@ $session = $sul->init();
 
 You can do a var_dump on the array to see the contents. It maps to the fields of the table created and used by Padly
 
-
-+++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
 
 Not that you would need to update the following files with your database access. This would soon be changed. The files are 
 

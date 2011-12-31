@@ -1,0 +1,101 @@
+Instructions.
+You would find below the steps on how to use Padly in your application.
+
+++++++++++++++++++++++++++++++++++++++++++++
+--Getting Padly
+Padly is hosted on Github. You can grab the development branch here: https://github.com/dadepo/Padly/zipball/dev. Extract the Zip file and rename it to padly. Next thing you need to do is to copy the padly folder into the root directory of your application. That is, if your application resides at http://localhost/yourapp, Padly should be in http://localhost/yourapp/padly
+
+--Create the Database
+Create a database and name it what you will. Let us assume the name of the database is padlydb
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++
+
+--Configuring Padly
+For Padly to work, you need to set up configurations. You find the configuration file in the Padly folder. It is named pd_config.php. Open up the file and proceed to setting up the necessary configurations
+
+--Configuring Fields
+$PD_SIGNUPFORM 
+This variable holds the array that is used to generate the table that would be needed for Padly. Specify the fields you want created for the signup form. Padly takes care of turning this into a sign up up and the creation of needed tables.
+You can add or remove fields from this configuration later on and Padly would automatically back up the recent table for you as sul_signup_profile_backup .
+A sample of this configuration exist in the pd_config.php file. Just edit to your needs but take note that The Username, Password, Email Address field should always be given using the specified key and that renaming keys in the array after an intial table has been generated would break your application. But you can add and remove fields even after initial table has been generated
+
+--Database access
+
+$con
+Specify your Database username and password
+
+
+--Configuring Padly Constants
+You have a list of constants that needs to be set for Padly to work properly. This would change as the project is updated but as at now, the following constants needs to be set
+
+define("DBNAME", "padly"); 
+//the director Padly code resides. Leave this as it is
+
+define("BASEURL", "padly"); 
+//the director Padly code resides. Leave this as it is
+
+define("RETRIEVE", "retrievepass.php"); 
+//The name of the file that activates the password retrieval functionality. This file would be found in your app directory and would instantiate the Padly class and call the display method passing in 'retrieve' as parameter. Consult the included retrievepass.php file to see how this looks.
+  
+define("BASE_REGISTER",'register.php');
+//The name of the file that handles the registration form for a user to create an account in your app. This file would be found in your yourapp directory and would instantiate the Padly class and call the necessary method. Consult the included register.php file to see how this looks.
+
+define("APP_BASE",'http://localhost/yourapp');
+//The base of your application
+
+define("APP",'Twitterx');
+//The name your application would be called. This is used in displaying the title of your application appropiately in the browser etc
+
+define("SIGNUP_SUCESS","registered.php");
+//The name of the file that users see when they have a successful registration. This file would be found in your app directory and you are free to customize it anyhow you want
+
+define("SIGNUP_FAIL","error.php");
+//The name of the file that users see when they do not have a successful registration and encounter an error. This file would be found in your app directory and you are free to customize it anyhow you want
+
+define("LANDING_PAGE","http://localhost/yourapp/home.php");
+//The name of the file that user sees when they successful login into your application. This file would be found in your yourapp directory.
+
+define("DOMAIN","http://localhost/");
+//Domain in which your Application sits
+
+define("PD_BASE","http://localhost/yourapp/padly");
+//The web url to the padly class. 
+//This would be removed soon
+
+define("LOGIN","http://localhost/p/index.php");
+//The URL where your Login would be.
+
+
+--Configure Error Messages
+You also have the ability to configure the error messages your application gives. This is done by configuring the array in the $PD_ERROR variable. See the included pd_config file to see ho this looks like
+
+--Setting Up Required php files
+Once this is done, the next thing you need to do is to make sure the files you specified in the configurations above are created and available where they should be. The files namely are retrievepass.php, register.php, registered.php, error.php, home.php and index.php. These files are already included in the download. So do look it up and modify as necessary.
+
++++++++++++++++++++++++++++++++++++++++++++++
+--Retrieve password
+Note that the retrieve password functionality wont work if you are testing Padly on a local machine.
+
++++++++++++++++++++++++++++++++++++++++++++++
+
+--Accessing Information of Logged in User across your application
+
+In your application you would have to include this to each file or Path
+
+include("padly/padly.php");
+$sul = new Padly($con);
+
+The init() method return in an array the information of the logged in user. 
+
+$session = $sul->init();
+
+You can do a var_dump on the array to see the contents. It maps to the fields of the table created and used by Padly
+
+
++++++++++++++++++++++++++++++++++++++++++++++
+
+Not that you would need to update the following files with your database access. This would soon be changed. The files are 
+
+/padly/html/signup.php
