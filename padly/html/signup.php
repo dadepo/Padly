@@ -4,7 +4,7 @@ include_once("padly/padly.php");
 
 GLOBAL $PD_SIGNUPFORM;
 
-$con = mysql_connect('localhost','root','ojigidiri');
+$con = mysql_connect('localhost','root','science');
 
 $p = new Padly($con);
 
@@ -67,6 +67,7 @@ $p = new Padly($con);
 			      //backup present table and create another one
 			      if (mysql_query("select * from sul_signup_profile_backup"))
 			      {
+                              
 				$r = mysql_query("drop table  sul_signup_profile_backup");
 					if(!$r)
 					{
@@ -79,7 +80,8 @@ $p = new Padly($con);
 			      
 			      
 			      
-			      $alter_string = "ALTER TABLE `sul_signup_profile` RENAME TO `test`.`sul_signup_profile_backup`;";
+			      $alter_string = "ALTER TABLE `sul_signup_profile` RENAME TO `sul_signup_profile_backup`;";
+                              
 			      $r = mysql_query($alter_string);
 			      if (!$r)
 			      {

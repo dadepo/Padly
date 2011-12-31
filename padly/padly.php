@@ -169,7 +169,7 @@ else
     
     
 //created successfully
-header("location:".SIGNUP_SUCESS);
+header("location:".APP_BASE.'/'.SIGNUP_SUCESS);
 }
             
 }
@@ -209,7 +209,7 @@ public function init()
     if (count($_SESSION) > 0 )
     {
         //know the variables available to you
-        print_r($_SESSION);
+        return $_SESSION;
         
     }
     else
@@ -354,7 +354,7 @@ public function reset($thepost)
 	
 	
 	echo "<label for=''>$key";if($req == 1) echo '*'; echo "</label>";
-	$optionarray = split(',',$PD_SIGNUPFORM[$key]['option']);
+	$optionarray = explode(',',$PD_SIGNUPFORM[$key]['option']);
 	foreach($optionarray as $option)
 	{
 		echo "<span>$option</span><input type='$type' value='$option' name='$key' id='$key' class=";

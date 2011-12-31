@@ -8,8 +8,6 @@
 <body>
 <?php
 include("padly/padly.php");
-
-
 $sul = new Padly($con);
 $sul->display('signup');
 ?>

@@ -8,28 +8,28 @@ $PD_SIGNUPFORM = array(
         "Email Address" => array("type"=>"text","required"=>"yes"),
 	"Your Feedback" => array("type"=>"textarea","required"=>"yes"),
 	"Phone" => array("type"=>"text"),
-        //"Sex" => array("type"=>"select","option"=>"Male,Female"),
+        "Sex" => array("type"=>"select","option"=>"Male,Female"),
 	"Marital Status" => array("type"=>"radio","option"=>"Married,Single","required"=>"yes"),
         
        );
 
 
-//$con = mysql_connect("localhost","dadeade1_padly","padly123");
-$con = mysql_connect("localhost","root","ojigidiri");
+
+$con = mysql_connect("localhost","root","science");
 
 
 define("DBNAME", "padly");
 define("BASEURL", "padly");
 define("RETRIEVE", "retrievepass.php");
 define("BASE_REGISTER",'register.php');
-define("APP_BASE",'http://localhost/testapp');
+define("APP_BASE",'http://localhost/p');
 define("APP",'Indigox');
-define("SIGNUP_SUCESS","/cool");
-define("SIGNUP_FAIL","/fail");
-define("LANDING_PAGE","http://localhost/testapp/home.php");
+define("SIGNUP_SUCESS","registered.php");
+define("SIGNUP_FAIL","error.php");
+define("LANDING_PAGE","http://localhost/p/home.php");
 define("DOMAIN","http://localhost/");
-define("PD_BASE","http://localhost/testapp/padly");
-define("LOGIN","http://localhost/testapp/index.php");
+define("PD_BASE","http://localhost/p/padly");
+define("LOGIN","http://localhost/p/index.php");
 
 
 $PD_ERROR = array(
@@ -37,8 +37,7 @@ $PD_ERROR = array(
                     1 => " Please Login in Other to Procede "
                     );
 
-//constant pages
-//register etc
+
 
 
 
