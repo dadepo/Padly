@@ -4,7 +4,7 @@ include_once("padly/padly.php");
 
 GLOBAL $PD_SIGNUPFORM;
 
-//your database deatils
+//your database access
 $con = mysql_connect('localhost','root','ojigidiri');
 
 
