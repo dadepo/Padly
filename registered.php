@@ -5,6 +5,7 @@
 <title>Registering Successful</title> 
 
 <?php
+//include the Padly class. This should be changed to Autoloading
 include("padly/padly.php");
 ?>
 
