@@ -1,0 +1,3 @@
+[12-Nov-2011 17:58:40] PHP Warning:  mysql_num_rows(): supplied argument is not a valid MySQL result resource in /home/dadeade1/public_html/testapp/padly/padly.php on line 253
+[12-Nov-2011 18:02:20] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/dadeade1/public_html/testapp/padly/padly.php:153) in /home/dadeade1/public_html/testapp/padly/padly.php on line 171
+[12-Nov-2011 18:04:22] PHP Warning:  Wrong parameter count for mysql_fetch_row() in /home/dadeade1/public_html/testapp/padly/padly.php on line 314
