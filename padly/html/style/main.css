@@ -1,0 +1,24 @@
+body
+{
+margin:0px;
+}
+div#login
+{
+border-top:40px solid #333;
+overflow:auto;
+
+}
+div#desc
+{
+padding-top:20px;
+width:70%;
+float:left;
+background-color:#eee;
+-webkit-box-shadow: inset -5px 2px 7px #888;
+}
+
+div#loginbox
+{
+width:20%;
+float:left;
+}
